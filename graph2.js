@@ -177,7 +177,7 @@ function setRegion(name) {
     const mouseover = function (d) {
       this.style.opacity = 1;
       tooltip
-        .html("Genre: " + d.data.key + "<br>" + "Value: " + d.data.value)
+        .html("Genre: " + d.data.key + "<br>" + "Global Sales: " + d.data.value)
         .style("opacity", 1);
     };
     const mousemove = function (d) {
