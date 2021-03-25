@@ -6,23 +6,83 @@
         <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
         <link rel="stylesheet" href="main.css"/>
         <!--Feel free to add more CSS files as needed-->
-        <script type="text/javascript" src="https://d3js.org/d3.v5.min.js"></script>
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+        <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+        <script src="https://d3js.org/topojson.v2.min.js"></script>
+        <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+        <!-- <script src="http://d3js.org/d3.v4.js"></script> -->
+        <!-- <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+        <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script> -->
+        <link rel="shortcut icon" href="#">
     </head>
 <body>
     <div class="header">
         <h3>Assignment 6 &laquo; Data Visualization Dashboard &raquo;</h3>
     </div>
+    
     <!--  We included a basic HTML structure for the 3 graphs here. Feel free to change this if you'd like  -->
     <div class="row">
-        <div class="col-lg-6">
-            <div id="graph1"></div>
-            <div id="graph2"></div><br/>
+        <div class="col-xs-12 col-lg-6">
+            <div class="selector" id="graph1-select">
+                <label for="select-year">Choose a year:</label>
+                <select id="select-year" onchange="setYear(this.options[this.selectedIndex].value)"></select>
+            </div>
+            <div class="center" id="graph1"></div>
         </div>
-        <div class="col-lg-6">
-            <div id="graph3"></div>
+        <div class="col-xs-12 col-lg-6">
+            <div class="selector" id="graph3-select">
+                <label for="select-genre">Choose a genre:</label>
+                <select id="select-genre" onchange="setGenre(this.options[this.selectedIndex].value)"></select>
+            </div>
+            <div class="center" id="graph3"></div>
         </div>
     </div>
+    <div id="graph2" class="row">
+        <div id="map" class="col-xs-12 col-lg-6 center"></div>
+        <div id="pie" class="col-xs-12 col-lg-6 center"></div>
+    </div>
+    <div class="row center written">
+        <div class="written-content">
+        <h4>Written Questions</h4>
+        <ol>
+            <li>Describe how your dashboard answers the questions presented. You don't have to address every question directly, but should at a high level address the main questions. (10 points)<br/>
+            For graph 1, I used a bar graph to show the top 10 games of all time or a specific year based on global sales. 
+            An interactive select was used to allow the user to change the time frame.<br/>
+            For graph 2, I used a map to show the top genre for each region and a pie chart to show the breakdown of a region's sales by genre. 
+            Each region is clickable to change which region the pie chart displays.<br/>
+            For graph 3, I used a bar graph to show the top 10 publishers of a genre based on global sales. 
+            An interactive select was used to allow the user to change the genre.
+        </li>
+            <li>List 3 reasons why D3 was helpful and improved your visualization (6 points)<br/>
+                D3 made it very easy to implement the graphs, especially with the examples on their website that could be used as a basic template to start from.
+                D3's structure also made it easy to create interactive elements and have graphs that handle the transitions and changes of different data.
+                D3's tooltip was also very easy to implement, and it was easily adapted to different graphs.
+            </li>
+            <li>List 3 reasons why D3 would not be the best tool for creating a visualization (6 points)<br/>
+            Even though D3 uses SVGs, there may be a better visualization tool for people who rely on screen readers. The graphs displayed by D3 are not the best way to represent data for blind people.
+            Although it is very customizable, it was not the quickest way to get to the final graphs. Since there is so much to be specified, if someone is in a time rush, it may be better to use something like Excel.
+            It is not very intuitive and the code is somewhat difficult to read. When multiple people are collaborating on a visualization, it may be better to use a simpler program so that everyone is on the same page on how the visualization is made.</li>
+            <li>Color blind people might find this dashboard accessible. First, I made sure that the colors contrasted enough in different color blindness using the color blind tool in the coolors.co site. 
+                Also, all of my graphs do not depend explicitly on color, and for areas of some uncertainty, I have a tooltip to clear up any confusion. Also for the pie chart, I included white space to distinguish the different sections.
+                Blind people or people with low vision might have a more difficult time with this dashboard. First, the text is not that large, which may be hard to read. Also, although the graphs are all svgs,
+                it would be difficult to determine the exact information the graph is portraying just from a screen reader. Along with this, the map and the pie chart uses tooltips which rely on hovering, and this is near impossible with screen readers. 
+                One thing I did include was a dropdown input since these can be used by screen readers. These are all aspects mentioned by Amanda Miller in A Comprehensive Guide to Accessible Data Visualization. From her article, one way to improve my dashboard
+                would be to get rid of the hover tooltips and replace them with labels that are always present. Also, these labels should be directly on the graphs, instead of using a color-reliant key.
+            </li>
+            <li>One factor is my own knowledge of D3 and responsive design. I was limited by how much I knew and was unable to implement a responsive web page that also looked good on mobile and desktop.
+                In addition to this, the questions themselves and the homework requirements also prevented me from taking these steps. For example, a tooltip is one of the dashboard requirements, but this is not recommended for accessibility.
+            </li>
+        </div>
+        </ol>
+
+    </div>
+    
+
     <!--Feel free to add more JavaScript files as needed-->
     <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="graph1.js"></script>
+    <script type="text/javascript" src="graph2.js"></script>
+    <script type="text/javascript" src="graph3.js"></script>
+    <script type="text/javascript" src="map.js"></script>
 </body>
 </html>

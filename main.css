@@ -1,3 +1,7 @@
+body {
+    box-sizing: border-box;
+    margin: 0px 60px ;
+}
 .header {
     padding-bottom: 20px;
     margin-bottom: 20px;
@@ -9,4 +13,24 @@
     text-align: center;
 }
 
+
 /* Include any custom CSS styling here! */
+.selector {
+    /* margin-left: 200px; */
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.written {
+    flex-direction: column;
+    /* max-width: 50%; */
+}
+
+.written-content {
+    width: 700px;
+    max-width: 90%;
+}
