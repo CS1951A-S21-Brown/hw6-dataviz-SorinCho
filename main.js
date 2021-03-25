@@ -2,13 +2,6 @@ const MAX_WIDTH = Math.max(1080, window.innerWidth);
 const MAX_HEIGHT = 720;
 const margin = { top: 40, right: 110, bottom: 40, left: 200 };
 
-let graph_1_width = MAX_WIDTH / 2 - 10,
-  graph_1_height = 275;
-let graph_2_width = MAX_WIDTH / 2 - 10,
-  graph_2_height = 275;
-let graph_3_width = MAX_WIDTH / 2 - 10,
-  graph_3_height = 275;
-
 function setSelect() {
   d3.csv("./data/video_games.csv").then((data) => {
     uniqueYears = [...new Set(data.map((d) => d.Year).sort())];
@@ -40,7 +33,7 @@ function setSelect() {
   });
 }
 
-const NA = [
+const NA = new Set([
   "Antigua and Barbuda",
   "The Bahamas",
   "Barbados",
@@ -64,8 +57,8 @@ const NA = [
   "Saint Vincent and the Grenadines",
   "Trinidad and Tobago",
   "USA",
-];
-const EU = [
+]);
+const EU = new Set([
   "Albania",
   "Andorra",
   "Armenia",
@@ -118,6 +111,6 @@ const EU = [
   "England",
   "Vatican City",
   "Greenland",
-];
+]);
 
 setSelect();

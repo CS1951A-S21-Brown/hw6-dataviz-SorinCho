@@ -1,6 +1,7 @@
 body {
     box-sizing: border-box;
-    margin: 0px 60px ;
+    margin: 0px 60px;
+    margin-bottom: 50px;
 }
 .header {
     padding-bottom: 20px;
