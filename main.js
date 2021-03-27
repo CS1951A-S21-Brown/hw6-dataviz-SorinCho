@@ -33,6 +33,35 @@ function setSelect() {
   });
 }
 
+function aggGenres(data, region) {
+  data = data.reduce((acc, curr) => {
+    if (curr["Genre"] in acc) {
+      acc[curr["Genre"]] += parseFloat(curr[`${region}_Sales`]);
+    } else {
+      acc[curr["Genre"]] = parseFloat(curr[`${region}_Sales`]);
+    }
+    return acc;
+  }, {});
+
+  return data;
+}
+
+function topGenre(data, region) {
+  data = aggGenres(data, region);
+  return Object.keys(data).reduce((a, b) => (data[a] > data[b] ? a : b));
+}
+
+const topGenres = {};
+
+function setTopGenres() {
+  const regions = ["NA", "EU", "JP", "Other"];
+  regions.forEach((region) => {
+    d3.csv("./data/video_games.csv").then((data) => {
+      topGenres[region] = topGenre(data, region);
+    });
+  });
+}
+
 const NA = new Set([
   "Antigua and Barbuda",
   "The Bahamas",
@@ -114,3 +143,4 @@ const EU = new Set([
 ]);
 
 setSelect();
+setTopGenres();

@@ -21,6 +21,7 @@
     <!--  We included a basic HTML structure for the 3 graphs here. Feel free to change this if you'd like  -->
     <div class="row">
         <div class="col-xs-12 col-lg-6">
+            <h4>Graph 1</h4>
             <div class="selector" id="graph1-select">
                 <label for="select-year">Choose a year:</label>
                 <select id="select-year" onchange="setYear(this.options[this.selectedIndex].value)"></select>
@@ -28,6 +29,7 @@
             <div class="center" id="graph1"></div>
         </div>
         <div class="col-xs-12 col-lg-6">
+            <h4>Graph 3</h4>
             <div class="selector" id="graph3-select">
                 <label for="select-genre">Choose a genre:</label>
                 <select id="select-genre" onchange="setGenre(this.options[this.selectedIndex].value)"></select>
@@ -36,6 +38,7 @@
         </div>
     </div>
     <div id="graph2" class="row">
+        <h4>Graph 2</h4>
         <div id="map" class="col-xs-12 col-lg-6 center"></div>
         <div id="pie" class="col-xs-12 col-lg-6 center"></div>
     </div>

@@ -52,16 +52,16 @@ d3.json("./data/world.geojson").then(function (data) {
     let topGenre = "";
     if (name == "JP") {
       region = "Japan";
-      topGenre = "Role-Playing";
+      topGenre = topGenres[name];
     } else if (name == "NA") {
       region = "North America";
-      topGenre = "Action";
+      topGenre = topGenres[name];
     } else if (name == "EU") {
       region = "Europe";
-      topGenre = "Action";
+      topGenre = topGenres[name];
     } else {
       region = "Other";
-      topGenre = "Action";
+      topGenre = topGenres[name];
     }
     d3.selectAll(".region").style("opacity", 0.5).style("stroke-opacity", 0.1);
     d3.selectAll(`.${name}`).style("opacity", 1).style("stroke-opacity", 1);
@@ -128,16 +128,9 @@ function setRegion(name) {
   }
   title_2_pie.text(`${label} Sales by Genre`);
   d3.csv("./data/video_games.csv").then((data) => {
-    data = data.reduce((acc, curr) => {
-      if (curr["Genre"] in acc) {
-        acc[curr["Genre"]] += parseFloat(curr[`${region}_Sales`]);
-      } else {
-        acc[curr["Genre"]] = parseFloat(curr[`${region}_Sales`]);
-      }
-      return acc;
-    }, {});
+    data = aggGenres(data, region);
 
-    const radius = Math.min(pie_width, pie_height) / 2;
+    const pie_radius = Math.min(pie_width, pie_height) / 2;
 
     let total = 0;
     for (let [genre, sales] of Object.entries(data)) {
@@ -196,7 +189,7 @@ function setRegion(name) {
     const pie = d3.pie().value((d) => d.value);
     const pie_data = pie(d3.entries(data));
     const color = d3.scaleOrdinal().domain(data).range(colors);
-    const arcs = d3.arc().innerRadius(0).outerRadius(radius);
+    const arcs = d3.arc().innerRadius(0).outerRadius(pie_radius);
 
     let pie_section = svg_pie.selectAll("path").data(pie_data);
     pie_section = pie_section.enter().append("path").merge(pie_section);

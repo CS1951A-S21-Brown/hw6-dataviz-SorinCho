@@ -31,3 +31,13 @@ body {
     width: 700px;
     max-width: 90%;
 }
+
+h4 {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+#graph2 > h4 {
+    margin-top: 50px;
+    margin-bottom: -30px;}

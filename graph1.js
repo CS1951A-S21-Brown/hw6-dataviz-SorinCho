@@ -160,7 +160,6 @@ function cleanDataYear(data, param) {
   });
 
   const sorted = final.sort((a, b) => b.Global_Sales - a.Global_Sales);
-  console.log(sorted);
   return sorted.slice(0, 10);
 }
 
