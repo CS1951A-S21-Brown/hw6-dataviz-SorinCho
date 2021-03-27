@@ -16,9 +16,6 @@ body {
 
 
 /* Include any custom CSS styling here! */
-.selector {
-    /* margin-left: 200px; */
-}
 
 .center {
     display: flex;
@@ -28,7 +25,6 @@ body {
 
 .written {
     flex-direction: column;
-    /* max-width: 50%; */
 }
 
 .written-content {

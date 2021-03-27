@@ -10,14 +10,12 @@
         <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
         <script src="https://d3js.org/topojson.v2.min.js"></script>
         <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
-        <!-- <script src="http://d3js.org/d3.v4.js"></script> -->
-        <!-- <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-        <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script> -->
         <link rel="shortcut icon" href="#">
     </head>
 <body>
     <div class="header">
         <h3>Assignment 6 &laquo; Data Visualization Dashboard &raquo;</h3>
+        <h3>Video Game Sales</h3>
     </div>
     
     <!--  We included a basic HTML structure for the 3 graphs here. Feel free to change this if you'd like  -->
@@ -43,33 +41,77 @@
     </div>
     <div class="row center written">
         <div class="written-content">
+            <h4>Notes:</h4>
+            <ul>
+                <li>
+                    Top 10 Games are based on a game's total global sales. If the game is on multiple platforms, then the sales are combined. 
+                </li>
+                <li>
+                    Many of the graphs are clickable! 
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row center written">
+        <div class="written-content">
         <h4>Written Questions</h4>
         <ol>
             <li>Describe how your dashboard answers the questions presented. You don't have to address every question directly, but should at a high level address the main questions. (10 points)<br/>
-            For graph 1, I used a bar graph to show the top 10 games of all time or a specific year based on global sales. 
-            An interactive select was used to allow the user to change the time frame.<br/>
-            For graph 2, I used a map to show the top genre for each region and a pie chart to show the breakdown of a region's sales by genre. 
-            Each region is clickable to change which region the pie chart displays.<br/>
-            For graph 3, I used a bar graph to show the top 10 publishers of a genre based on global sales. 
-            An interactive select was used to allow the user to change the genre.
+                <ul>
+                    <li>
+                        For graph 1, I used a bar graph to show the top 10 games of all time or a specific year based on global sales. 
+                        An interactive select was used to allow the user to change the time frame.
+                        The bars can be clicked to display the top 10 publishers for the game's genre in graph 3.
+                    </li>
+                    <li>
+                        For graph 2, I used a map to show the top genre for each region and a pie chart to show the breakdown of a region's sales by genre. 
+                        Each region is clickable to change which region the pie chart displays.
+                        Each pie slice can be clicked to show the top publishers in that genre.
+                    </li> 
+                    <li>
+                        For graph 3, I used a bar graph to show the top 10 publishers of a genre based on global sales. 
+                        An interactive select was used to allow the user to change the genre.
+                        The top publisher is also bolded to display the clear top publisher.
+                    </li>
+                </ul>
         </li>
             <li>List 3 reasons why D3 was helpful and improved your visualization (6 points)<br/>
-                D3 made it very easy to implement the graphs, especially with the examples on their website that could be used as a basic template to start from.
-                D3's structure also made it easy to create interactive elements and have graphs that handle the transitions and changes of different data.
-                D3's tooltip was also very easy to implement, and it was easily adapted to different graphs.
+                <ul>
+                    <li>
+                        D3 made it very easy to implement the graphs, especially with the examples on their website that could be used as a basic template to start from.
+                        This allowed me to focus more on how to represent the data, rather than worrying too much about the implementation.
+                    </li>
+                    <li>
+                        D3's structure also made it easy to create interactive elements and have graphs that handle the transitions and changes of different data.
+                        This made the visualizations more interesting and engaging.
+                    </li> 
+                    <li>
+                        D3's tooltip was also extremely customizable. This allowed me to improve the layout of the web page and have positions and color the way I wanted.
+                    </li>
+                </ul>
             </li>
             <li>List 3 reasons why D3 would not be the best tool for creating a visualization (6 points)<br/>
-            Even though D3 uses SVGs, there may be a better visualization tool for people who rely on screen readers. The graphs displayed by D3 are not the best way to represent data for blind people.
-            Although it is very customizable, it was not the quickest way to get to the final graphs. Since there is so much to be specified, if someone is in a time rush, it may be better to use something like Excel.
-            It is not very intuitive and the code is somewhat difficult to read. When multiple people are collaborating on a visualization, it may be better to use a simpler program so that everyone is on the same page on how the visualization is made.</li>
+                <ul>
+                    <li>
+                        Even though D3 uses SVGs, there may be a better visualization tool for people who rely on screen readers. The graphs displayed by D3 are not the best way to represent data for blind people.
+                    </li>
+                    <li>
+                        Although it is very customizable, it was not the quickest way to get to the final graphs. Since there is so much to be specified, if someone is in a time rush, it may be better to use something like Excel.
+                    </li> 
+                    <li>
+                        It is not very intuitive and the code is rather difficult to read. When multiple people are collaborating on a visualization, it may be better to use a simpler program so that everyone is on the same page on how the visualization is made.
+                    </li>
+                </ul>
+            </li>
             <li>Color blind people might find this dashboard accessible. First, I made sure that the colors contrasted enough in different color blindness using the color blind tool in the coolors.co site. 
                 Also, all of my graphs do not depend explicitly on color, and for areas of some uncertainty, I have a tooltip to clear up any confusion. Also for the pie chart, I included white space to distinguish the different sections.
-                Blind people or people with low vision might have a more difficult time with this dashboard. First, the text is not that large, which may be hard to read. Also, although the graphs are all svgs,
+                On the other hand, blind people or people with low vision might have a more difficult time with this dashboard. First, the text is not that large, which may be hard to read. Also, although the graphs are all svgs,
                 it would be difficult to determine the exact information the graph is portraying just from a screen reader. Along with this, the map and the pie chart uses tooltips which rely on hovering, and this is near impossible with screen readers. 
                 One thing I did include was a dropdown input since these can be used by screen readers. These are all aspects mentioned by Amanda Miller in A Comprehensive Guide to Accessible Data Visualization. From her article, one way to improve my dashboard
-                would be to get rid of the hover tooltips and replace them with labels that are always present. Also, these labels should be directly on the graphs, instead of using a color-reliant key.
+                would be to get rid of the hover tooltips and replace them with labels that are always present. These labels should be directly on the graphs, instead of using a color-reliant key.
             </li>
-            <li>One factor is my own knowledge of D3 and responsive design. I was limited by how much I knew and was unable to implement a responsive web page that also looked good on mobile and desktop.
+            <li>One factor is my own knowledge of D3 and responsive design. I was limited by how much I knew and although it is a responsive web page, I had difficulty on balancing what looked good on mobile and desktop. 
+                Creating a web page that looked good on all devices and also being accessible proved to be quite a challenge.
                 In addition to this, the questions themselves and the homework requirements also prevented me from taking these steps. For example, a tooltip is one of the dashboard requirements, but this is not recommended for accessibility.
             </li>
         </div>

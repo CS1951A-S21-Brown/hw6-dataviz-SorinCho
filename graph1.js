@@ -82,7 +82,7 @@ function setYear(val) {
       this.style.opacity = 1;
     };
 
-    const mouseleave = function (d) {
+    const mouseout = function (d) {
       d3.selectAll(".game-bar").style("opacity", 0.8);
     };
 
@@ -105,11 +105,13 @@ function setYear(val) {
 
     bars
       .on("mouseover", mouseover)
-      .on("mouseleave", mouseleave)
+      .on("mouseout", mouseout)
       .on("click", (d) => {
         document.getElementById("select-genre").value = d.Genre;
         setGenre(d.Genre);
       });
+
+    bars = svg_1.selectAll("rect").data(data);
 
     const counts = countRef_1.selectAll("text").data(data);
 
@@ -120,7 +122,7 @@ function setYear(val) {
       .transition()
       .duration(1000)
       .attr("x", (d) => x_1(d[x_key]) + 5)
-      .attr("y", (d) => y_1(d[y_key]) + 12)
+      .attr("y", (d) => y_1(d[y_key]) + 15)
       .style("text-anchor", "start")
       .text((d) => d[x_key])
       .style("font-size", "10px");
@@ -137,19 +139,29 @@ function cleanDataYear(data, param) {
   if (param != "All Time") {
     clean = data.filter((d) => d.Year == param);
   }
-  // console.log(data);
-  // clean = clean.reduce((acc, curr) => {
-  //   if (curr["Name"] in acc) {
-  //     acc[curr["Name"]] += parseFloat(curr["Global_Sales"]);
-  //   } else {
-  //     acc[curr["Name"]] = parseFloat(curr["Global_Sales"]);
-  //   }
-  //   return acc;
-  // }, {});
-  // clean = Object.keys(clean).map((key) => {
-  //   key, clean[key];
-  // });
-  return clean.slice(0, 10);
+
+  const genres = {};
+  const flatten = clean.reduce((acc, curr) => {
+    if (curr["Name"] in acc) {
+      acc[curr["Name"]] += parseFloat(curr["Global_Sales"]);
+    } else {
+      acc[curr["Name"]] = parseFloat(curr["Global_Sales"]);
+      genres[curr["Name"]] = curr["Genre"];
+    }
+    return acc;
+  }, {});
+
+  const final = Object.keys(flatten).map((key) => {
+    return {
+      Name: key,
+      Global_Sales: parseFloat(flatten[key].toFixed(2)),
+      Genre: genres[key],
+    };
+  });
+
+  const sorted = final.sort((a, b) => b.Global_Sales - a.Global_Sales);
+  console.log(sorted);
+  return sorted.slice(0, 10);
 }
 
 setYear("All Time");

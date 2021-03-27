@@ -78,14 +78,6 @@ function setGenre(val) {
       )
       .range(d3.quantize(d3.interpolateHcl("#D66853", "#364156"), 10));
 
-    const mouseover = function (d) {
-      this.style.opacity = 1;
-    };
-
-    const mouseleave = function (d) {
-      d3.selectAll(".publisher-bar").style("opacity", 0.8);
-    };
-
     let bars = svg_3.selectAll("rect").data(data);
     bars = bars.enter().append("rect").merge(bars);
 
@@ -96,14 +88,13 @@ function setGenre(val) {
         return color(d[y_key]);
       })
       .attr("class", "publisher-bar")
-      .style("cursor", "pointer")
       .style("opacity", 0.8)
       .attr("x", x_3(0))
       .attr("y", (d) => y_3(d[y_key]))
       .attr("width", (d) => x_3(d[x_key]))
       .attr("height", y_3.bandwidth());
 
-    bars.on("mouseover", mouseover).on("mouseleave", mouseleave);
+    bars = svg_3.selectAll("rect").data(data);
 
     const counts = countRef_3.selectAll("text").data(data);
 
@@ -114,7 +105,7 @@ function setGenre(val) {
       .transition()
       .duration(1000)
       .attr("x", (d) => x_3(d[x_key]) + 5)
-      .attr("y", (d) => y_3(d[y_key]) + 12)
+      .attr("y", (d) => y_3(d[y_key]) + 15)
       .style("text-anchor", "start")
       .text((d) => d[x_key])
       .style("font-size", "10px");
